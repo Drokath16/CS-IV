@@ -1,0 +1,42 @@
+@page "/products"
+@using entregable3.Data
+
+
+@code{
+    List<Product> ListProducts = new ();
+}
+<table class="table">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Code</td>
+            <td>Name</td>
+            <td>Price</td>
+            <td></td>
+        </tr>
+    </thead>
+   <tbody>
+        @foreach (var producto in ListProducts)
+        {
+            <tr>
+                <td>@producto.id</td>
+                <td>@producto.Code</td>
+                <td>@producto.Name</td>
+                <td>@producto.Price</td>
+                <td>
+                    <a class="btn btn-info" href="/products/@producto.id/details">
+                        Ver
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+ @code{
+     protected override void OnInitialized()
+    {
+        InMemoryProducts productosBD = new InMemoryProducts();
+        ListProducts = productosBD.getProducts();
+    }
+ } 

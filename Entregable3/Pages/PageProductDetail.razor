@@ -1,0 +1,41 @@
+@page "/products/{id:int}/details"
+@using entregable3.Data
+<link rel="stylesheet" href="css/InfoPro.css">
+
+
+<h1 class="Producto">Datos del producto</h1>
+<table>
+    <tr>
+        <th>Nombre del producto:</th>
+        <th>@producto.Name</th>
+       
+    </tr>
+    <tr>
+        <td>Id del producto:</td>
+        <td>@producto.id</td>
+    </tr>
+    <tr>
+        <td>Codigo de producto</td>
+        <td>@producto.Code</td>
+    </tr>
+    <tr>
+        <td>Precio del producto: </td>
+        <td>@producto.Price</td>
+    </tr>
+</table>
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    private Product producto;
+
+    protected override void OnInitialized()
+    {
+        InMemoryProducts productosBD = new InMemoryProducts();
+        List<Product> productos = productosBD.getProducts();
+
+        producto = productos[this.Id - 1];
+
+    }
+}

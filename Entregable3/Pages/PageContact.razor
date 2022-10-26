@@ -1,0 +1,47 @@
+@page "/contact"
+
+<div class="mb-3">
+  <label  class="form-label">Nombre</label>
+  <input type="text" class="form-control" id="nombre" @bind="nombre" placeholder="Ingrese su nombre">
+</div>
+<div class="mb-3">
+  <label  class="form-label">Correo electrónico</label>
+  <input type="email" class="form-control" @bind="email" placeholder="Ingrese su correo electronico">
+</div>
+<div class="mb-3">
+  <label  class="form-label">Número de Teléfono </label>
+  <input type="number" class="form-control"  @bind="telefono" placeholder="Ingrese su edad">
+</div>
+<div class="mb-3">
+  <label  class="form-label">Mensaje </label>
+  <input type="text" class="form-control" @bind="mensaje" placeholder="Ingrese un mensaje">
+</div>
+<button class="btn btn-success" @onclick="mostrar" >Guardar</button>
+<br>
+@if (@bandera)
+{
+    nombre=@nombre;
+    email=@email;
+    telefono=@telefono;
+    mensaje=@mensaje;
+
+    <p>Hola soy, @nombre, Quiero comunicarme con ustedes por lo siguiente: <br>
+      @mensaje.<br> 
+      Pueden comunicarse conmigo en: <br>
+      Correo electronico: @email <br>
+      Teléfono: @telefono
+    </p>
+}
+
+
+
+@code{
+  private string? nombre;
+  private string? email;
+  private int? telefono;
+  private string? mensaje;
+  private bool bandera=false;
+ private void mostrar(){
+  this.bandera=true;
+ }
+}
